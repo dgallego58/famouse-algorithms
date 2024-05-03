@@ -11,7 +11,6 @@ import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
@@ -19,6 +18,7 @@ import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
 
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -33,7 +33,9 @@ public class BenchmarkAlgorithm {
 
     @Benchmark
     public void mergeSort(BenchMarkState state, Blackhole bh) {
-        var result = state.algorithmSelector.get(BenchMarkState.AlgType.MERGE_SORT).sort(state.nums);
+        var result = state.algorithmSelector
+                .get(BenchMarkState.AlgType.MERGE_SORT)
+                .sort(state.numsCopy());
         bh.consume(result);
 
     }
@@ -41,21 +43,27 @@ public class BenchmarkAlgorithm {
 
     @Benchmark
     public void bubbleSort(BenchMarkState state, Blackhole bh) {
-        var result = state.algorithmSelector.get(BenchMarkState.AlgType.BUBBLE_SORT).sort(state.nums);
+        var result = state.algorithmSelector
+                .get(BenchMarkState.AlgType.BUBBLE_SORT)
+                .sort(state.numsCopy());
         bh.consume(result);
 
     }
 
     @Benchmark
     public void insertionSort(BenchMarkState state, Blackhole bh) {
-        var result = state.algorithmSelector.get(BenchMarkState.AlgType.INSERTION_SORT).sort(state.nums);
+        var result = state.algorithmSelector
+                .get(BenchMarkState.AlgType.INSERTION_SORT)
+                .sort(state.numsCopy());
         bh.consume(result);
 
     }
 
     @Benchmark
     public void quickSort(BenchMarkState state, Blackhole bh) {
-        var result = state.algorithmSelector.get(BenchMarkState.AlgType.QUICK_SORT).sort(state.nums);
+        var result = state.algorithmSelector
+                .get(BenchMarkState.AlgType.QUICK_SORT)
+                .sort(state.numsCopy());
         bh.consume(result);
 
     }
@@ -65,15 +73,14 @@ public class BenchmarkAlgorithm {
     public void selectionSort(BenchMarkState state, Blackhole bh) {
         var result = state.algorithmSelector
                 .get(BenchMarkState.AlgType.SELECTION_SORT)
-                .sort(state.nums);
+                .sort(state.numsCopy());
         bh.consume(result);
     }
 
     @State(Scope.Benchmark)
     public static class BenchMarkState {
 
-        @Param({"100", "1000", "10000"})
-        public int ONE_THOUSAND;
+        public int ONE_THOUSAND = 10;
         private int[] nums;
         private Map<AlgType, Sort> algorithmSelector;
 
@@ -90,6 +97,10 @@ public class BenchmarkAlgorithm {
             for (int i = 0; i < ONE_THOUSAND; i++) {
                 nums[i] = secureRandom.nextInt(ONE_THOUSAND);
             }
+        }
+
+        public int[] numsCopy() {
+            return Arrays.copyOf(nums, nums.length);
         }
 
         private void fillAlgorithmSelector() {

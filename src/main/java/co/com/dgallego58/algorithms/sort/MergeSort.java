@@ -1,5 +1,8 @@
 package co.com.dgallego58.algorithms.sort;
 
+import java.security.SecureRandom;
+import java.util.Arrays;
+
 public class MergeSort implements Sort {
 
     @Override
@@ -7,6 +10,18 @@ public class MergeSort implements Sort {
         mergeSort(inputArray);
         return inputArray;
 
+    }
+
+    public static void main(String[] args) {
+
+        int size = 10_000_000;
+        SecureRandom secureRandom = new SecureRandom();
+        int[] ints = new int[size];
+        for (int i = 0; i < size; i++) {
+            ints[i]=secureRandom.nextInt(size);
+        }
+        MergeSort mergeSort = new MergeSort();
+        mergeSort.sort(ints);
     }
 
     public void mergeSort(int[] inputArray) {
@@ -30,8 +45,8 @@ public class MergeSort implements Sort {
             rightArray[i - mid] = inputArray[i];
         }
 
-        sort(leftArray);
-        sort(rightArray);
+        mergeSort(leftArray);
+        mergeSort(rightArray);
 
         merge(inputArray, leftArray, rightArray);
     }

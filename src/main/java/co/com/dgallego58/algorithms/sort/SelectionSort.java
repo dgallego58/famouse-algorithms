@@ -4,8 +4,8 @@ public class SelectionSort implements Sort {
     @Override
     public int[] sort(int[] inputArray) {
 
-selectionSort(inputArray);
-return inputArray;
+        selectionSort(inputArray);
+        return inputArray;
     }
 
     private void selectionSort(int[] inputArray) {
