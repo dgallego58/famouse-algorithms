@@ -3,7 +3,13 @@ package co.com.dgallego58.algorithms.sort;
 public class MergeSort implements Sort {
 
     @Override
-    public void sort(int[] inputArray) {
+    public int[] sort(int[] inputArray) {
+        mergeSort(inputArray);
+        return inputArray;
+
+    }
+
+    public void mergeSort(int[] inputArray) {
         int inputLength = inputArray.length;
 
         if (inputLength < 2) {
@@ -28,7 +34,6 @@ public class MergeSort implements Sort {
         sort(rightArray);
 
         merge(inputArray, leftArray, rightArray);
-
     }
 
     private void merge(int[] inputArray, int[] leftArray, int[] rightArray) {

@@ -4,7 +4,12 @@ public class InsertionSort implements Sort{
 
 
     @Override
-    public void sort(int[] inputArray) {
+    public int[] sort(int[] inputArray) {
+       insertionSort(inputArray);
+       return inputArray;
+    }
+
+    private void insertionSort(int[] inputArray) {
         int n = inputArray.length;
         for (int i = 1; i < n; i++) {
             int key = inputArray[i];
@@ -16,4 +21,6 @@ public class InsertionSort implements Sort{
             inputArray[j + 1] = key;
         }
     }
+
+
 }

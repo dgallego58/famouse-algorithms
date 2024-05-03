@@ -2,9 +2,10 @@ package co.com.dgallego58.algorithms.sort;
 
 public class QuickSort implements Sort {
     @Override
-    public void sort(int[] inputArray) {
+    public int[] sort(int[] inputArray) {
         int length = inputArray.length;
         quickSort(inputArray, 0, length - 1);
+        return inputArray;
     }
 
 

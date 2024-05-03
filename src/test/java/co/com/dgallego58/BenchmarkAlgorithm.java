@@ -33,33 +33,40 @@ public class BenchmarkAlgorithm {
 
     @Benchmark
     public void mergeSort(BenchMarkState state, Blackhole bh) {
-        state.algorithmSelector.get(BenchMarkState.AlgType.MERGE_SORT).sort(state.nums);
-        bh.consume(state.nums);
+        var result = state.algorithmSelector.get(BenchMarkState.AlgType.MERGE_SORT).sort(state.nums);
+        bh.consume(result);
+
     }
 
 
     @Benchmark
     public void bubbleSort(BenchMarkState state, Blackhole bh) {
-        state.algorithmSelector.get(BenchMarkState.AlgType.BUBBLE_SORT).sort(state.nums);
-        bh.consume(state.nums);
+        var result = state.algorithmSelector.get(BenchMarkState.AlgType.BUBBLE_SORT).sort(state.nums);
+        bh.consume(result);
+
     }
 
     @Benchmark
     public void insertionSort(BenchMarkState state, Blackhole bh) {
-        state.algorithmSelector.get(BenchMarkState.AlgType.INSERTION_SORT).sort(state.nums);
-        bh.consume(state.nums);
+        var result = state.algorithmSelector.get(BenchMarkState.AlgType.INSERTION_SORT).sort(state.nums);
+        bh.consume(result);
+
     }
 
     @Benchmark
     public void quickSort(BenchMarkState state, Blackhole bh) {
-        state.algorithmSelector.get(BenchMarkState.AlgType.QUICK_SORT).sort(state.nums);
-        bh.consume(state.nums);
+        var result = state.algorithmSelector.get(BenchMarkState.AlgType.QUICK_SORT).sort(state.nums);
+        bh.consume(result);
+
     }
+
 
     @Benchmark
     public void selectionSort(BenchMarkState state, Blackhole bh) {
-        state.algorithmSelector.get(BenchMarkState.AlgType.SELECTION_SORT).sort(state.nums);
-        bh.consume(state.nums);
+        var result = state.algorithmSelector
+                .get(BenchMarkState.AlgType.SELECTION_SORT)
+                .sort(state.nums);
+        bh.consume(result);
     }
 
     @State(Scope.Benchmark)

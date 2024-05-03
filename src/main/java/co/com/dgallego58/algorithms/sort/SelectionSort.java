@@ -2,7 +2,13 @@ package co.com.dgallego58.algorithms.sort;
 
 public class SelectionSort implements Sort {
     @Override
-    public void sort(int[] inputArray) {
+    public int[] sort(int[] inputArray) {
+
+selectionSort(inputArray);
+return inputArray;
+    }
+
+    private void selectionSort(int[] inputArray) {
         int n = inputArray.length;
         for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
@@ -15,6 +21,5 @@ public class SelectionSort implements Sort {
             inputArray[minIndex] = inputArray[i];
             inputArray[i] = temp;
         }
-
     }
 }
