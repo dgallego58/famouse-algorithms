@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("me.champeau.jmh") version "0.7.2"
+    id("idea")
 
 }
 
@@ -11,6 +12,13 @@ repositories {
     mavenCentral()
 }
 
+
+idea{
+    module{
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
+}
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
